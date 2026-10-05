@@ -5,6 +5,8 @@ function ChatArea() {
   return(
     <>
     <Sidebar />
+
+    <input className="message-bar" type="text" placeholder="Message" />
     </>
   );
 }

@@ -1,7 +1,11 @@
 .message-bar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 50%;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, -10%);
+  width: 40%;
+  max-width: 650px;
+  padding: 10px;
+  border: none;
   border-radius: 20px;
 }
