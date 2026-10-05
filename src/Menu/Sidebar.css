@@ -1,0 +1,92 @@
+.menu {
+  display: flex;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -200px;
+  width: 250px;
+  background-color: #1f1e1e;
+  height: 100%;
+  padding-top: 25px;
+  transition: left 0.3s ease-out;
+}
+
+.sidebar.open {
+  left: 0px;
+}
+
+.sidebar a {
+  display: block;
+  text-decoration: none;
+  color: white;
+  font-weight: 100;
+  padding: 5px 5px 5px 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar a:hover {
+  transition: 0.3s ease;
+  background-color: #575757;
+  opacity: 0.8;
+  border-radius: 5px;
+}
+
+.menu-toggle {
+  position: absolute;
+  top: 25px;
+  left: 210px;
+  border-radius: 50px;
+  background-color: #1f1e1e;
+  border: none;
+  cursor: pointer;
+}
+
+.menu-toggle img {
+  height: 20px;
+}
+
+.new-chat {
+  position: absolute;
+  top: 90vh;
+  left: 212px;
+  border-radius: 50px;
+  background-color: #1f1e1e;
+  border: none;
+  cursor: pointer;
+}
+
+.chats-heading {
+  position: absolute;
+  top: 27px;
+  left: 100px;
+}
+
+.chat-history {
+  position: absolute;
+  top: 200px;
+  left: 10px;
+  width: 180px;
+  max-height: 58%;
+}
+
+.new-chat img {
+  height: 20px;
+}
+
+.settings {
+  position: absolute;
+  top: 95vh;
+  left: 210px;
+  border-radius: 50px;
+  background-color: #1f1e1e;
+  border: none;
+  cursor: pointer;
+}
+
+.settings img {
+  height: 25px;
+}
