@@ -46,6 +46,12 @@
   cursor: pointer;
 }
 
+.menu-toggle:hover {
+  transition: 0.3s ease;
+  opacity: 0.6;
+  border-radius: 5px;
+}
+
 .menu-toggle img {
   height: 20px;
 }
@@ -58,6 +64,12 @@
   background-color: #1f1e1e;
   border: none;
   cursor: pointer;
+}
+
+.new-chat:hover {
+  transition: 0.3s ease;
+  opacity: 0.6;
+  border-radius: 5px;
 }
 
 .chats-heading {
@@ -86,6 +98,12 @@
   background-color: #1f1e1e;
   border: none;
   cursor: pointer;
+}
+
+.settings:hover {
+  transition: 0.3s ease;
+  opacity: 0.6;
+  border-radius: 25px;
 }
 
 .settings img {

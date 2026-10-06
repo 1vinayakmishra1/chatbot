@@ -8,4 +8,11 @@
   padding: 10px;
   border: none;
   border-radius: 20px;
+  outline: none;
+  background-color: rgb(240, 237, 237);
 }
+
+.message-bar:focus {
+  background-color: white;
+}
+
