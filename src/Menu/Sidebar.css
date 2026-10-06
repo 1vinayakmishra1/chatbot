@@ -46,6 +46,25 @@
   cursor: pointer;
 }
 
+@media screen and (max-width: 600px) {
+  .menu-toggle {
+    top: 10px;
+    left: 260px;
+    background-color: black;
+  }
+
+  .sidebar {
+    left: -250px;
+  }
+
+  .sidebar.open {
+    .menu-toggle {
+      left: 210px;
+      background-color: #1f1e1e;
+    }
+  }
+}
+
 .menu-toggle:hover {
   transition: 0.3s ease;
   opacity: 0.6;
