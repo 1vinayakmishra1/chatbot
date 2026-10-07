@@ -13,10 +13,9 @@ body {
   position: fixed;
   bottom: 0;
   left: 50%;
-  width: fit-content;
   transform: translate(-50%, -10%);
-  width: 40%;
-  max-width: 650px;
+  width: 44%;
+  max-width: 660px;
 }
 
 .message-bar {
@@ -54,7 +53,9 @@ body {
 
 .message-container {
   box-sizing: border-box;
-  height: 100vh;
+  height: 94vh;
+  overflow: auto;
+  scrollbar-width: none;
   width: 44vw;
   border: none;
   display: flex;
@@ -64,6 +65,9 @@ body {
 @media screen and (max-width: 600px) {
   .message-container {
     width: 100vw;
+  }
+  .search-tools {
+    width: 96vw;
   }
 }
 
