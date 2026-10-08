@@ -1,5 +1,5 @@
 import "./ChatArea.css"
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import ReactMarkdown from "react-markdown";
 import search from './assets/search.svg'
@@ -8,6 +8,14 @@ import Sidebar from "./Menu/Sidebar";
 function ChatArea() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
+  const chatContainerRef = useRef(null);
+
+  useEffect(() => {
+    chatContainerRef.current?.scrollTo({
+      top: chatContainerRef.current.scrollHeight,
+      behavior: "smooth"
+    });
+  }, [messages]);
 
   const sendMessage = async () => {
     if (!input.trim()) {
@@ -41,7 +49,7 @@ function ChatArea() {
         <button onClick={sendMessage} className="search-btn"><img src={search} alt="search" /></button>
       </div>
 
-      <div className="message-container">
+      <div className="message-container" ref={chatContainerRef}>
         {messages.map((msg, index) => {
           return (
             <div key={index} className={msg.role === "user" ? "user-message" : "robot-message"}>
