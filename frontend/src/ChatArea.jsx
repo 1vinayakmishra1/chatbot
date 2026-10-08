@@ -21,7 +21,6 @@ function ChatArea() {
     const response = await axios.post("http://localhost:5000/chat", {
       message: input
     });
-    console.log(response.data);
 
     const reply = response.data.reply;
     setMessages([...newMessage, { role: "ai", text: reply }]);
@@ -32,7 +31,11 @@ function ChatArea() {
       <Sidebar />
 
       <div className="search-tools">
-        <input value={input} onChange={(event) => {
+        <input onKeyDown={(event) => {
+          if (event.key === 'Enter') {
+            sendMessage();
+          }
+        }} value={input} onChange={(event) => {
           setInput(event.target.value);
         }} className="message-bar" type="text" placeholder="Ask Anything!" />
         <button onClick={sendMessage} className="search-btn"><img src={search} alt="search" /></button>
