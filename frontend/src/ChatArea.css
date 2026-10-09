@@ -1,21 +1,39 @@
 body {
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
   color: white;
+  display: block;
+  -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.message-container {
+  box-sizing: border-box;
+  width: 44vw;
+  min-height: 94vh;
+  height: auto;
+  overflow: visible;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  margin: 0 auto;
+  padding-bottom: 60px;
 }
 
 .search-tools {
   display: flex;
   position: fixed;
-  bottom: 0;
+  bottom: 12px;
   left: 50%;
-  transform: translate(-50%, -10%);
+  transform: translateX(-50%);
   width: 44%;
   max-width: 660px;
+  z-index: 10;
 }
 
 .message-bar {
@@ -49,17 +67,6 @@ body {
 
 .message-bar:focus {
   background-color: white;
-}
-
-.message-container {
-  box-sizing: border-box;
-  height: 94vh;
-  overflow: auto;
-  scrollbar-width: none;
-  width: 44vw;
-  border: none;
-  display: flex;
-  flex-direction: column;
 }
 
 @media screen and (max-width: 600px) {
@@ -108,4 +115,9 @@ body {
   max-width: 95%;
   overflow-wrap: break-word;
   white-space: normal;
+}
+
+.loading-spinner {
+  height: 40px;
+  margin: -15px;
 }

@@ -1,26 +1,29 @@
 import "./ChatArea.css"
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import ReactMarkdown from "react-markdown";
 import search from './assets/search.svg'
 import Sidebar from "./Menu/Sidebar";
+import LoadingSpinnerGif from './assets/LoadingSpinnerGif.gif'
 
 function ChatArea() {
   const [messages, setMessages] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [input, setInput] = useState("");
-  const chatContainerRef = useRef(null);
 
   useEffect(() => {
-    chatContainerRef.current?.scrollTo({
-      top: chatContainerRef.current.scrollHeight,
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
       behavior: "smooth"
     });
   }, [messages]);
 
   const sendMessage = async () => {
-    if (!input.trim()) {
+    if (isLoading || !input.trim()) {
       return;
     }
+
+    setIsLoading(true);
 
     const newMessage = [...messages, { role: "user", text: input }]
     setMessages(newMessage);
@@ -31,7 +34,8 @@ function ChatArea() {
     });
 
     const reply = response.data.reply;
-    setMessages([...newMessage, { role: "ai", text: reply }]);
+    setMessages(prev => [...prev, { role: "ai", text: reply }]);
+    setIsLoading(false);
   }
 
   return (
@@ -49,7 +53,7 @@ function ChatArea() {
         <button onClick={sendMessage} className="search-btn"><img src={search} alt="search" /></button>
       </div>
 
-      <div className="message-container" ref={chatContainerRef}>
+      <div className="message-container">
         {messages.map((msg, index) => {
           return (
             <div key={index} className={msg.role === "user" ? "user-message" : "robot-message"}>
@@ -57,6 +61,11 @@ function ChatArea() {
             </div>
           );
         })}
+        {isLoading && (
+          <div className="robot-message">
+            <img className="loading-spinner" src={LoadingSpinnerGif} alt="loading..." />
+          </div>
+        )}
       </div>
     </>
   );
