@@ -3,8 +3,9 @@ import settings from '../assets/settings.svg'
 import hamburgerMenu from '../assets/hamburger-menu.svg'
 import newChat from '../assets/new-chat.svg'
 import { useState } from "react";
+import '../components/SettingsModal.css'
 
-export default function Sidebar() {
+export default function Sidebar( {toggleModal} ) {
   const [isOpen, setIsOpen] = useState(false);
 
   const menuToggle = () => {
@@ -22,7 +23,7 @@ export default function Sidebar() {
         <a href="#">Oldering Chat</a>
         </div>
         <button className="new-chat"><img src={newChat} alt="new-chat" /></button>
-        <button className="settings"><img src={settings} alt="settings" /></button>
+        <button className="settings" onClick={toggleModal}><img src={settings} alt="settings" /></button>
       </div>
     </div>
   );

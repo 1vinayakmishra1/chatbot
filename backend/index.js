@@ -21,7 +21,7 @@ app.post("/chat", async (req, res) => {
 
     res.json({ reply: response.data.response });
   } catch (err) {
-    console.error("Ollama error:", err.message);
+    console.error("Ollama error:", err);
     res.status(500).json({ error: "Something went wrong" });
   }
 });

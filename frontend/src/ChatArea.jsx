@@ -4,12 +4,18 @@ import axios from "axios";
 import ReactMarkdown from "react-markdown";
 import search from './assets/search.svg'
 import Sidebar from "./Menu/Sidebar";
+import SettingsModal from "./components/settingsModal";
 import LoadingSpinnerGif from './assets/LoadingSpinnerGif.gif'
 
 function ChatArea() {
   const [messages, setMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [modal, setModal] = useState(false);
   const [input, setInput] = useState("");
+
+  function toggleModal() {
+    setModal(!modal);
+  }
 
   useEffect(() => {
     window.scrollTo({
@@ -40,7 +46,9 @@ function ChatArea() {
 
   return (
     <>
-      <Sidebar />
+      <Sidebar toggleModal={toggleModal} />
+
+      <SettingsModal modal={modal} toggleModal={toggleModal} />
 
       <div className="search-tools">
         <input onKeyDown={(event) => {
