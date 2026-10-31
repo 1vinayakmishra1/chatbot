@@ -17,7 +17,7 @@ function SettingsModal({ modal, toggleModal }) {
 
     <div className="account-section">
       <button className="login-btn">Log In</button>
-      <button className="password-btn">Change Password</button>
+      <button className="SignUp-btn">Sign-up</button>
     </div>
   </div>
 </div>
