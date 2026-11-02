@@ -4,7 +4,7 @@ import axios from "axios";
 import ReactMarkdown from "react-markdown";
 import search from './assets/search.svg'
 import Sidebar from "./Menu/Sidebar";
-import SettingsModal from "./components/settingsModal";
+import SettingsModal from "./components/SettingsModal";
 import LoadingSpinnerGif from './assets/LoadingSpinnerGif.gif'
 
 function ChatArea() {
