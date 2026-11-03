@@ -1,21 +1,37 @@
 import '../components/settingsModal.css'
 import ProfilePic from "../assets/loadingSpinnerGif.gif"
 import { useState } from 'react';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../firebase/firebase';
 
 function SettingsModal({ modal, toggleModal }) {
   const [view, setView] = useState('settings');
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+
     if(view === 'sign-up') {
-      const password = event.target.password.value;
       const confirmPassword = event.target.confirmPassword.value;
 
       if (password !== confirmPassword) {
         alert('password do not match');
         return;
       }
+    }
+
+    try {
+      if (view === 'sign-up') {
+      await createUserWithEmailAndPassword(auth, email, password);
+    } else {
+      await signInWithEmailAndPassword(auth, email, password);
+    }
+
+    toggleModal();
+    } catch (error) {
+      alert(error.message);
     }
   }
 
@@ -44,7 +60,7 @@ function SettingsModal({ modal, toggleModal }) {
         </div>)
         : (
           <form className="auth-form" onSubmit={handleSubmit}>
-            <input className="auth-input" type="email" placeholder="Email" required />
+            <input className="auth-input" name="email" type="email" placeholder="Email" required />
             <input className="auth-input" name="password" type="password" placeholder="Password" required />
 
             {view === 'sign-up' &&
