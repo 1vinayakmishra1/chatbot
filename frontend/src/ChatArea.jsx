@@ -7,7 +7,7 @@ import Sidebar from "./Menu/Sidebar";
 import SettingsModal from "./components/SettingsModal";
 import LoadingSpinnerGif from './assets/LoadingSpinnerGif.gif'
 
-function ChatArea() {
+function ChatArea( {user} ) {
   const [messages, setMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [modal, setModal] = useState(false);
@@ -48,7 +48,7 @@ function ChatArea() {
     <>
       <Sidebar toggleModal={toggleModal} />
 
-      <SettingsModal modal={modal} toggleModal={toggleModal} />
+      <SettingsModal modal={modal} toggleModal={toggleModal} user={user} />
 
       <div className="search-tools">
         <input onKeyDown={(event) => {

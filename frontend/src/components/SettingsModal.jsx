@@ -1,10 +1,10 @@
 import '../components/settingsModal.css'
 import ProfilePic from "../assets/loadingSpinnerGif.gif"
 import { useState } from 'react';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { auth } from '../firebase/firebase';
 
-function SettingsModal({ modal, toggleModal }) {
+function SettingsModal({ modal, toggleModal, user }) {
   const [view, setView] = useState('settings');
 
   const handleSubmit = async (event) => {
@@ -13,7 +13,7 @@ function SettingsModal({ modal, toggleModal }) {
     const email = event.target.email.value;
     const password = event.target.password.value;
 
-    if(view === 'sign-up') {
+    if (view === 'sign-up') {
       const confirmPassword = event.target.confirmPassword.value;
 
       if (password !== confirmPassword) {
@@ -24,14 +24,22 @@ function SettingsModal({ modal, toggleModal }) {
 
     try {
       if (view === 'sign-up') {
-      await createUserWithEmailAndPassword(auth, email, password);
-    } else {
-      await signInWithEmailAndPassword(auth, email, password);
-    }
+        await createUserWithEmailAndPassword(auth, email, password);
+      } else {
+        await signInWithEmailAndPassword(auth, email, password);
+      }
 
-    toggleModal();
+      toggleModal();
     } catch (error) {
       alert(error.message);
+    }
+  }
+
+  const handleSignOut = async () => {
+    try {
+      await signOut(auth);
+    } catch (error) {
+      alert(error.message)
     }
   }
 
@@ -54,8 +62,17 @@ function SettingsModal({ modal, toggleModal }) {
           </div>
 
           <div className="account-section">
-            <button className="login-btn" onClick={() => {setView('login')}}>Log In</button>
-            <button className="SignUp-btn" onClick={() => {setView('sign-up')}}>Sign Up</button>
+            {user ? (
+              <>
+                <p className="signed-in-email">Signed in as {user.email}</p>
+                <button className="logout-btn" onClick={handleSignOut}>Log Out</button>
+              </>
+            ) : (
+              <>
+                <button className="login-btn" onClick={() => { setView('login') }}>Log In</button>
+                <button className="SignUp-btn" onClick={() => { setView('sign-up') }}>Sign Up</button>
+              </>
+            )}
           </div>
         </div>)
         : (
@@ -64,14 +81,14 @@ function SettingsModal({ modal, toggleModal }) {
             <input className="auth-input" name="password" type="password" placeholder="Password" required />
 
             {view === 'sign-up' &&
-            (<input className="auth-input" name="confirmPassword" type="password" placeholder="Confirm Password" required />)}
+              (<input className="auth-input" name="confirmPassword" type="password" placeholder="Confirm Password" required />)}
 
             <button className="auth-submit-btn" type="submit">
               {view === 'login' ? 'Log In' : 'Sign Up'}
             </button>
 
-            <button className="auth-back-btn" type="button" onClick={() => {setView('settings')}}>Back</button>
-            
+            <button className="auth-back-btn" type="button" onClick={() => { setView('settings') }}>Back</button>
+
           </form>
         )}
     </div>
