@@ -119,6 +119,18 @@
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+.signed-in-email {
+  margin: 0;
+  padding: 12px 16px;
+  border: 1px solid rgba(167, 139, 250, 0.2);
+  border-radius: 12px;
+  background: rgba(139, 92, 246, 0.08);
+  color: #c4b5fd;
+  font-size: 14px;
+  text-align: center;
+  overflow-wrap: anywhere;
+}  
+
 .login-btn {
   display: inline-flex;
   align-items: center;
