@@ -1,5 +1,5 @@
 import '../components/settingsModal.css'
-import ProfilePic from "../assets/loadingSpinnerGif.gif"
+import ProfilePic from "../assets/Profile-pic-svg.svg"
 import { useState } from 'react';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { auth } from '../firebase/firebase';
